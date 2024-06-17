@@ -4,17 +4,15 @@ import React from "react";
 import { Button } from "./ui/button";
 import { createStudent } from "@/lib/actions/student.action";
 
+import { checkin } from "@/lib/actions/checkin.action";
+import { useAuth } from "@clerk/nextjs";
+
 const CheckIn = () => {
+  const { userId } = useAuth();
+
   async function handleClick() {
     try {
-      await createStudent({
-        studentId: "123",
-        name: "John Doe",
-        username: "johndoe",
-        email: "test@test.com",
-        attendance: 0,
-        belt: "White",
-      });
+      await checkin({ studentId: userId ?? "" });
     } catch (error) {
       console.log("Error checking in", error);
     }

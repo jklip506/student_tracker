@@ -6,3 +6,7 @@ export interface CreateUserParams {
   attendance: number;
   belt: string;
 }
+
+export interface CheckInParams {
+  studentId: string;
+}
