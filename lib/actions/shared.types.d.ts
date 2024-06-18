@@ -3,7 +3,7 @@ export interface CreateUserParams {
   name: string;
   username: string;
   email: string;
-  attendance: number;
+  attendance?: [Date];
   belt: string;
 }
 

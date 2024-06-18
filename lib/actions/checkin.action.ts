@@ -7,10 +7,10 @@ import { CheckInParams } from "./shared.types";
 export async function checkin(params: CheckInParams) {
   try {
     await connectToDatabase();
-    // find by studentId and update attendance by incrementing count by 1
     const checkin = await Student.findOneAndUpdate(
       { studentId: params.studentId },
-      { $inc: { attendance: 1 } },
+      // add today's date to attendance array
+      { $push: { attendance: new Date() } },
       { new: true }
     );
     if (!checkin) {

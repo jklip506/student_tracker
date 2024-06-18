@@ -2,7 +2,7 @@ import { Schema, models, model, Document } from "mongoose";
 
 export interface IStudent extends Document {
   studentId: string;
-  attendance: number;
+  attendance: [Date];
   belt: string;
 }
 
@@ -11,7 +11,7 @@ const StudentSchema: Schema = new Schema({
   name: { type: String, required: true },
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  attendance: { type: Number, default: 0 },
+  attendance: { type: [Date], default: [] },
   belt: { type: String, default: "White" },
 });
 
