@@ -4,6 +4,10 @@ export interface IStudent extends Document {
   studentId: string;
   attendance: [Date];
   belt: string;
+  name: string;
+  username: string;
+  email: string;
+  isInstructor: boolean;
 }
 
 const StudentSchema: Schema = new Schema({
@@ -13,6 +17,7 @@ const StudentSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
   attendance: { type: [Date], default: [] },
   belt: { type: String, default: "White" },
+  isInstructor: { type: Boolean, default: false },
 });
 
 const Student = models.Student || model("Student", StudentSchema);

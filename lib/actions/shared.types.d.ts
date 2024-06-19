@@ -5,6 +5,7 @@ export interface CreateUserParams {
   email: string;
   attendance?: [Date];
   belt: string;
+  isInstructor?: boolean;
 }
 
 export interface CheckInParams {
