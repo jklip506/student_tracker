@@ -14,3 +14,33 @@ export async function createStudent(userData: CreateUserParams) {
     throw error;
   }
 }
+
+export async function getStudentData(studentId: string) {
+  try {
+    await connectToDatabase();
+
+    const student = await Student.findOne({ studentId }).select(
+      "name belt attendance isInstructor"
+    );
+
+    return student;
+  } catch (error) {
+    console.log("Error getting student data", error);
+    throw error;
+  }
+}
+
+export async function getAllStudentsData() {
+  try {
+    await connectToDatabase();
+
+    const students = await Student.find().select(
+      "name belt attendance isInstructor"
+    );
+
+    return students;
+  } catch (error) {
+    console.log("Error getting all students data", error);
+    throw error;
+  }
+}
