@@ -77,6 +77,7 @@ The MongoDB database will have one main collections: `students`.
 {
   "users": {
     "_id": "ObjectId",
+    "student_id": "clerkId"
     "name": "String",
     "email": "String",
     "username": "String",
