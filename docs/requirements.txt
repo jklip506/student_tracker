@@ -1,0 +1,86 @@
+Jiu Jitsu Gym Attendance Tracker
+
+
+== Background
+
+The Jiu Jitsu Gym Attendance Tracker app is designed to streamline the process of tracking students' attendance at a jiu jitsu gym. The app leverages modern web technologies and services such as Next.js for the frontend, MongoDB for the database, Clerk for authentication, and webhooks for automated user document creation. This ensures a seamless and efficient way to manage attendance records and provide instructors with a comprehensive view of their students' participation.
+
+== Requirements
+
+*Must Have:*
+- Student registration and authentication via Clerk
+- Automated user document creation in MongoDB via webhooks
+- Check-in functionality for students to log their attendance
+- Instructor portal to view all students' attendance records, belt level, and total days trained
+
+*Should Have:*
+- User roles and permissions management
+- Reporting and analytics on attendance data
+
+*Could Have:*
+- Support for multiple gyms
+- Notifications or reminders for students to check in
+- Future enhancements to manage billing, students' accounts, adding instructors, and class scheduling
+- Admin role for gym owners with full access to all functionalities
+
+== Method
+
+To address the requirements, the app will be developed using the following technologies and architecture:
+
+=== Architecture Design
+
+The application will follow a client-server architecture with the following components:
+
+- **Frontend:** Built with Next.js
+- **Backend:** Node.js server
+- **Database:** MongoDB for storing user and attendance data
+- **Authentication:** Clerk for user authentication and management
+- **Webhooks:** To handle user creation and document insertion into MongoDB
+
+==== Frontend: Built with Next.js
+Reasoning:
+
+Server-Side Rendering (SSR): Next.js provides built-in support for SSR, which enhances performance and SEO by delivering pre-rendered pages.
+API Routes: Next.js allows the creation of API endpoints directly within the application, simplifying the architecture by eliminating the need for a separate backend.
+Ease of Development: Next.js offers a robust developer experience with features like fast refresh, static site generation, and a rich ecosystem of plugins and tools.
+React-Based: Leveraging React, Next.js benefits from a large community and a wealth of existing components and libraries.
+==== Backend: Node.js server
+Reasoning:
+
+JavaScript Everywhere: Using Node.js allows for a unified language across both the frontend and backend, simplifying development and maintenance.
+Non-Blocking I/O: Node.js’s event-driven architecture makes it suitable for I/O-intensive applications, such as handling multiple simultaneous user requests efficiently.
+==== Database: MongoDB
+Reasoning:
+
+Document-Oriented: MongoDB is a NoSQL database that stores data in JSON-like documents, making it flexible and ideal for applications where data structures can evolve over time.
+Scalability: MongoDB is designed to handle large volumes of data and can be easily scaled horizontally by adding more servers to the database cluster.
+Rich Query Language: MongoDB provides a powerful query language that supports a wide range of operations, including aggregation, indexing, and geospatial queries.
+Integration with Node.js: MongoDB integrates seamlessly with Node.js using libraries like Mongoose, allowing for efficient and straightforward data operations.
+==== Authentication: Clerk
+Reasoning:
+
+User Management: Clerk offers a comprehensive user management system that handles registration, login, and user profiles out of the box, saving significant development time.
+Security: Clerk provides robust security features, including password hashing, multi-factor authentication, and compliance with industry standards.
+Ease of Integration: Clerk is designed to integrate easily with modern frontend frameworks like React and Next.js, providing pre-built components and APIs.
+==== Webhooks
+Reasoning:
+
+Event-Driven Architecture: Webhooks allow the application to respond to specific events, such as user creation in Clerk, in real-time. This decouples the systems and ensures that the app remains responsive and scalable.
+Automation: Webhooks automate the process of user document creation in MongoDB, reducing manual intervention and the potential for errors.
+Scalability: By using webhooks, the app can easily scale and handle events asynchronously, ensuring that the main application remains performant.
+
+=== Database Schema
+
+The MongoDB database will have one main collections: `students`.
+
+```json
+{
+  "users": {
+    "_id": "ObjectId",
+    "name": "String",
+    "email": "String",
+    "username": "String",
+    "beltLevel": "String",
+    "attendance": ["Date"]
+  },
+}

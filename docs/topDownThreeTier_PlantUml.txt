@@ -1,0 +1,36 @@
+@startuml
+
+actor Student
+actor Instructor
+actor Admin
+
+rectangle NextJSApp {
+  Student --> (Check-In)
+  Instructor --> (View Students Records)
+  Admin --> (Manage System)
+}
+
+rectangle NodeServer {
+  (Check-In) --> NodeServer : Post Check-In
+  (View Students Records) --> NodeServer : Fetch Students Data
+  (Manage System) --> NodeServer : Various Operations
+  NodeServer --> MongoDB : Insert User Document
+  NodeServer --> MongoDB : Update Attendance
+  NodeServer --> MongoDB : Retrieve Students Data
+}
+
+rectangle MongoDB {
+  [Attendance Data] --> (Insert User Document)
+  [Attendance Data] --> (Update Attendance)
+  [User Data] --> (Retrieve Students Data)
+}
+
+rectangle Clerk {
+  Student --> (Register/Login)
+  (Register/Login) --> (New User Created)
+}
+
+rectangle Webhook {
+  (New User Created) --> (Handle New User)
+  (Handle New User) --> NextJSApp : Insert U
+}

@@ -1,0 +1,24 @@
+@startuml
+skinparam componentStyle rectangle
+
+actor Student
+actor Instructor
+actor Admin
+
+Student -> Clerk : Register/Login
+Student -> NextJSApp : Check-In
+NextJSApp -> NodeServer : Post Check-In
+NodeServer -> MongoDB : Update Attendance
+
+Clerk -> NextJSApp : New User Created (Webhook)
+NextJSApp -> MongoDB : Insert User Document
+
+Instructor -> NextJSApp : View Students Records
+NextJSApp -> NodeServer : Fetch Students Data
+NodeServer -> MongoDB : Retrieve Students Data
+
+Admin -> NextJSApp : Manage System
+NextJSApp -> NodeServer : Various Operations
+NodeServer -> MongoDB : CRUD Operations
+
+@enduml
